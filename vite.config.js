@@ -31,6 +31,10 @@ export default defineConfig({
                 compact: true,
             }
         },
-        sourcemap: false
+        sourcemap: false,
+        commonjsOptions: {
+            sourceMap: false,
+
+        }
     },
 })
