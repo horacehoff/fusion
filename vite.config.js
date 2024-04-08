@@ -26,7 +26,7 @@ export default defineConfig({
             }
         },
         rollupOptions: {
-            treeshake: "smallest",
+            treeshake: "recommended",
             output: {
                 compact: true,
             }
