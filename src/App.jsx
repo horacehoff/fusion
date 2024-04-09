@@ -52,7 +52,9 @@ function App() {
 
 
         function changeCss() {
+
             requestAnimationFrame(() => {
+                console.log(scrollY)
                 // Update navigation element opacity
                 navElement.style.opacity = scrollY > 50 ? 0 : 1;
 
@@ -78,8 +80,8 @@ function App() {
                 // Update fusion title
 
 
-                if (scrollY > 3050) {
-                    fusionTitleText = "AD ASTRA";
+                if (scrollY > 2800) {
+                    fusionTitleText = "SOURCES";
                     fusionTitleColor = "white";
                 } else if (scrollY > 1880) {
                     fusionTitleText = "ENERGY";
@@ -259,7 +261,19 @@ function App() {
                 <br/>
                 <span id="fusion-energy-value-homes">14 homes for a year</span>
             </div>
-            <div style={{marginBottom: "3700px"}}>
+            <div className="fusion-info-sources">
+                <a href="https://www.iter.org/sci/Fusion">ITER</a>
+                <br/>
+                <a href="https://ccfe.ukaea.uk/fusion-energy/fusion-in-brief/">Culham Centre For Fusion Energy</a>
+                <br/>
+                <a href="https://en.wikipedia.org/wiki/Tritium">Tritium - Wikipedia</a>
+                <br/>
+                <a href="https://en.wikipedia.org/wiki/Deuterium">Deuterium - Wikipedia</a>
+                <br/>
+                <a href="https://en.wikipedia.org/wiki/Nuclear_fusion#Process">Nuclear Fusion - Wikipedia</a>
+
+            </div>
+            <div style={{marginBottom: "3500px"}}>
             </div>
         </>
     )
