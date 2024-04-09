@@ -1,16 +1,16 @@
 import './App.css'
-import {SpaceDust} from "./FusionStorm.jsx";
-import {useEffect, useState} from "react";
+import {FusionStorm} from "./FusionStorm.jsx";
+import React, {useEffect, useState} from "react";
 
 
 function App() {
     const [deuteriumReactions, setDeuteriumReactions] = useState(1)
     const [tritiumReactions, setTritiumReactions] = useState(1)
 
-    document.getElementById("root").scrollTo({
-        top: 0,
-        behavior: 'instant',
-    });
+    // document.getElementById("root").scrollTo({
+    //     top: 0,
+    //     behavior: 'instant',
+    // });
 
     useEffect(() => {
 
@@ -54,7 +54,7 @@ function App() {
         function changeCss() {
 
             requestAnimationFrame(() => {
-                console.log(scrollY)
+                // console.log(scrollY)
                 // Update navigation element opacity
                 navElement.style.opacity = scrollY > 50 ? 0 : 1;
 
@@ -132,9 +132,11 @@ function App() {
             passive: true
         });
     }, [])
+
+
     return (
         <>
-            <SpaceDust/>
+            <FusionStorm/>
             <a className="inspire" id="inspire" href="https://www.spacex.com/careers/jobs/" target="_blank">Inspire</a>
             <a className="about" href="https://just-a-mango.github.io" target="_blank">About</a>
 
