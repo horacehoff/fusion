@@ -128,7 +128,10 @@
     .fusion-data-desc {
         white-space: initial !important;
         text-align: left;
+    }
 
+    .fusion-data-desc:first-of-type {
+        width: 95vw !important;
     }
 
     .helium {
