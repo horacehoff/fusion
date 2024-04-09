@@ -7,16 +7,6 @@ export function FusionStorm() {
 
 
     useEffect(() => {
-        // document.getElementById("root").innerHTML += "<div style='height: 100lvh; width: 1px' id='heightfinder'></div>"
-        // height = document.getElementById("heightfinder").clientHeight || 0
-        // document.getElementById("root").removeChild(document.getElementById("heightfinder"))
-        // document.getElementById("root").innerHTML += "<div style='height: 100lvh; width: 1px' id='heightfinder'></div>"
-        // let height = document.getElementById("root").clientHeight || 0
-        // document.getElementById("root").removeChild(document.getElementById("heightfinder"))
-
-
-        let abort = false
-
         function fusionStorm() {
             const canvas = document.getElementById("fusionstorm");
             if (canvas.getContext) {
@@ -108,37 +98,6 @@ export function FusionStorm() {
         }
         fusionStorm()
     }, [])
-
-    // function throttle(mainFunction, delay) {
-    //     let timerFlag = null; // Variable to keep track of the timer
-    //
-    //     // Returning a throttled version
-    //     return (...args) => {
-    //         if (timerFlag === null) { // If there is no timer currently running
-    //             mainFunction(...args); // Execute the main function
-    //             timerFlag = setTimeout(() => { // Set a timer to clear the timerFlag after the specified delay
-    //                 timerFlag = null; // Clear the timerFlag to allow the main function to be executed again
-    //             }, delay);
-    //         }
-    //     };
-    // }
-    //
-    // function updateSize() {
-    //     abort = true
-    //     document.getElementById("fusionstorm").parentNode.removeChild(document.getElementById("fusionstorm"))
-    //     abort = false
-    //     import('react-dom/server').then(server => {
-    //         document.getElementById("root").innerHTML = server.renderToStaticMarkup(<canvas className="fusionstorm"
-    //                                                                                          id="fusionstorm"
-    //                                                                                          height={Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)} width={Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)}></canvas>) + document.getElementById("root").innerHTML
-    //         fusionStorm()
-    //     })
-    // }
-    //
-    // const throttledUpdateSize = throttle(updateSize, 1000)
-    //
-    // window.addEventListener("resize", () => throttledUpdateSize())
-
 
     return (
         <>
