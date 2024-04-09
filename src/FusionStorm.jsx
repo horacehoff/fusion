@@ -67,9 +67,6 @@ export function FusionStorm() {
 
                 // Function to animate the particles
                 function animate() {
-                    if (abort) {
-                        return
-                    }
                     // Clear canvas
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
