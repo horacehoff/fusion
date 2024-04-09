@@ -11,7 +11,11 @@ export function SpaceDust() {
         if (canvas.getContext) {
             const ctx = canvas.getContext("2d", {alpha: false});
             ctx.imageSmoothingEnabled = false;
-            ctx.fillStyle = `rgba(255, 0, 0, 1)`;
+            if (window.matchMedia("(max-width: 500px)").matches) {
+                ctx.fillStyle = `rgba(255, 0, 0, 0.5)`;
+            } else {
+                ctx.fillStyle = `rgba(255, 0, 0, 1)`;
+            }
 
 
             const numParticles = 3000; // Number of particles
