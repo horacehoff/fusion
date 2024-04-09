@@ -7,13 +7,11 @@ function App() {
     const [deuteriumReactions, setDeuteriumReactions] = useState(1)
     const [tritiumReactions, setTritiumReactions] = useState(1)
 
-    // document.getElementById("root").scrollTo({
-    //     top: 0,
-    //     behavior: 'instant',
-    // });
 
     useEffect(() => {
-
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
         const navElement = document.getElementById("learn-more");
         const fusionSubtitle = document.getElementById("fusion-subtitle");
         const fusionDataEnergy = document.getElementById("fusion-data-energy");
@@ -133,6 +131,10 @@ function App() {
         });
     }, [])
 
+
+    // const SpaceDust = useMemo(() => {
+    //     <FusionStorm/>
+    // }, [])
 
     return (
         <>

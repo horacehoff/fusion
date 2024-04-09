@@ -6,11 +6,15 @@ export function FusionStorm() {
     let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
 
+
     useEffect(() => {
+        let stop = false
         function fusionStorm() {
             const canvas = document.getElementById("fusionstorm");
+
             if (canvas.getContext) {
                 const ctx = canvas.getContext("2d", {alpha: false});
+                ctx.reset()
                 ctx.imageSmoothingEnabled = false;
                 if (window.matchMedia("(max-width: 500px)").matches) {
                     ctx.fillStyle = `rgba(255, 0, 0, 0.5)`;
@@ -67,6 +71,9 @@ export function FusionStorm() {
 
                 // Function to animate the particles
                 function animate() {
+                    if (stop) {
+                        return
+                    }
                     // Clear canvas
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -84,8 +91,6 @@ export function FusionStorm() {
 
                     // Request animation frame
                     requestAnimationFrame(animate);
-
-
                 }
 
                 // Start animation
