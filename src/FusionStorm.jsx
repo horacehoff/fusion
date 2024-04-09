@@ -2,8 +2,12 @@ import "./FusionStorm.css"
 import {useEffect} from "react";
 
 export function SpaceDust() {
+    document.getElementById("root").innerHTML += "<div style='height: 100lvh; width: 1px' id='heightfinder'></div>"
+    console.log(document.getElementById("heightfinder").clientHeight)
     let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-    let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    let height = document.getElementById("heightfinder").clientHeight || 0
+    document.getElementById("root").removeChild(document.getElementById("heightfinder"))
+    // let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
     let abort = false
 
     function fusionStorm() {
