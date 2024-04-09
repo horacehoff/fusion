@@ -27,6 +27,7 @@
     transform: translate(-50%, -50%);
     text-align: center;
     width: 100vw;
+    z-index: 3;
 }
 
 .fusion-title {
@@ -37,6 +38,12 @@
     z-index: 10;
     margin-bottom: 0;
     transition: color 0.2s;
+}
+
+@media screen and (max-width: 500px) {
+    .fusion-title[data-title="i"] {
+        font-size: 10.24vw;
+    }
 }
 
 .fusion-subtitle {
@@ -73,6 +80,8 @@
     border-radius: 6px;
     width: 560px;
     height: 315px;
+    z-index: 4;
+
 }
 
 @media screen and (max-width: 700px) {

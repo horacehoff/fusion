@@ -6,49 +6,14 @@ import {useEffect, useState} from "react";
 function App() {
     const [deuteriumReactions, setDeuteriumReactions] = useState(1)
     const [tritiumReactions, setTritiumReactions] = useState(1)
+
+    document.getElementById("root").scrollTo({
+        top: 0,
+        behavior: 'instant',
+    });
+
     useEffect(() => {
-        // function changeCss () {
-        //     console.log(scrollY)
-        //     let navElement = document.getElementById("learn-more");
-        //     this.scrollY > 50 ? navElement.style.opacity = 0 : navElement.style.opacity = 1;
-        //
-        //
-        //
-        //     document.getElementById("fusion-subtitle").style.opacity = mapRange(scrollY, 170, 190, 1, 0)
-        //     document.getElementById("fusion-data-energy").style.opacity = mapRange(scrollY, 1000, 1100, 0, 1)
-        //     document.getElementById("fusion-data-carbon").style.opacity = mapRange(scrollY, 1160, 1220, 0, 1)
-        //     document.getElementById("fusion-data-waste").style.opacity = mapRange(scrollY, 1300, 1360, 0, 1)
-        //     document.getElementById("fusion-data-safety").style.opacity = mapRange(scrollY, 1420, 1480, 0, 1)
-        //     document.getElementById("fusion-energy-demo").style.opacity = mapRange(scrollY, 1900, 2200, 0, 1)
-        //     document.getElementById("fusionstorm").style.filter = "brightness("+mapRange(scrollY, 2900, 3200, 1, 0)+")"
-        //     if (scrollY > 190) {
-        //         document.getElementById("fusion-text").style.top = "226px"
-        //         document.getElementById("fusion-text").style.position = "fixed"
-        //     } else {
-        //         document.getElementById("fusion-text").style.position = null
-        //         document.getElementById("fusion-text").style.top = null
-        //     }
-        //     if (scrollY > 280) {
-        //         document.getElementById("fusion-title").innerHTML = "INTRODUCTION"
-        //         document.getElementById("fusion-title").style.color = "white"
-        //     } else {
-        //         document.getElementById("fusion-title").innerHTML = "NUCLEAR FUSION"
-        //         document.getElementById("fusion-title").style.color = null
-        //     }
-        //     if (scrollY > 850) {
-        //         document.getElementById("fusion-title").innerHTML = "THIS MEANS"
-        //     }
-        //     if (scrollY > 1880) {
-        //         document.getElementById("fusion-title").innerHTML = "ENERGY"
-        //     }
-        //     if (scrollY > 2900) {
-        //         let viewport_height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) / 2
-        //         document.getElementById("fusion-text").style.top = mapRange(scrollY, 2900, 3200, 226, viewport_height)+"px"
-        //     }
-        //     if (scrollY > 3050) {
-        //         document.getElementById("fusion-title").innerHTML = "AD ASTRA"
-        //     }
-        // }
+
         const navElement = document.getElementById("learn-more");
         const fusionSubtitle = document.getElementById("fusion-subtitle");
         const fusionDataEnergy = document.getElementById("fusion-data-energy");
@@ -62,6 +27,29 @@ function App() {
 
         let fusionTitleText = "NUCLEAR FUSION";
         let fusionTitleColor = null;
+
+
+        let constant_top = 0
+
+        function makeElementFixed(elementId) {
+            const element = document.getElementById(elementId);
+            // console.log(document.getElementById("fusion-title").clientHeight)
+            if (!element) return;
+
+            const rect = element.getBoundingClientRect();
+            // const topOffset = rect.top+34.304+(56.320 / 2)+5;
+            const topOffset = rect.top + 34.304 + (document.getElementById("fusion-title").clientHeight / 2) + 5;
+
+            element.style.position = 'fixed';
+            if (constant_top === 0) {
+                constant_top = topOffset
+                element.style.top = `${topOffset}px`;
+                console.log(topOffset)
+            } else {
+                element.style.top = `${constant_top}px`;
+            }
+        }
+
 
         function changeCss() {
             requestAnimationFrame(() => {
@@ -78,8 +66,10 @@ function App() {
 
                 // Update fusion text position
                 if (scrollY > 190) {
-                    fusionText.style.position = "fixed";
-                    fusionText.style.top = "226px";
+                    // fusionText.style.position = "fixed";
+                    // // fusionText.style.top = "226px";
+                    // fusionText.style.top = "27.033492822966508vw";
+                    makeElementFixed("fusion-text")
                 } else {
                     fusionText.style.position = null;
                     fusionText.style.top = null;
@@ -97,13 +87,21 @@ function App() {
                 } else if (scrollY > 850) {
                     fusionTitleText = "THIS MEANS";
                     fusionTitleColor = "white";
+                    fusionTitle.dataset.title = "t"
                 } else if (scrollY > 280) {
                     fusionTitleText = "INTRODUCTION";
                     fusionTitleColor = "white";
+                    fusionTitle.dataset.title = "i"
                 } else {
                     fusionTitleText = "NUCLEAR FUSION";
                     fusionTitleColor = null;
+                    fusionTitle.dataset.title = "n"
                 }
+                // if (scrollY > 280 && scrollY < 850 && window.matchMedia("(max-width: 500px)").matches) {
+                //     fusionTitle.style.fontSize = "10.24vw"
+                // } else {
+                //     fusionTitle.style.fontSize = null
+                // }
 
                 fusionTitle.innerHTML = fusionTitleText;
                 fusionTitle.style.color = fusionTitleColor;
@@ -114,7 +112,7 @@ function App() {
                 // Update fusion text position based on scroll position
                 if (scrollY > 2900) {
                     const viewportHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) / 2;
-                    fusionText.style.top = mapRange(scrollY, 2900, 3200, 226, viewportHeight) + "px";
+                    fusionText.style.top = mapRange(scrollY, 2900, 3200, constant_top, viewportHeight) + "px";
                 }
             });
         }
@@ -169,13 +167,13 @@ function App() {
                 <span id="fusion-data-carbon" className="fusion-data-stat">
                   🏭 Carbon emissions ?
               <br/>
-              <span className="fusion-data-desc helium" style={{width: "calc(100vw - 10px)"}}>Nuclear fusion only releases helium, a safe and inert gas that is harmless to the environment</span>
+              <span className="fusion-data-desc helium" style={{width: "calc(100vw - 9px)"}}>Nuclear fusion only releases helium, a safe and inert gas that is harmless to the environment</span>
               <br/><br/>
               </span>
                 <span id="fusion-data-waste" className="fusion-data-stat">
                   ☢️ Radioactive waste ?
               <br/>
-              <span className="fusion-data-desc" style={{width: "calc(100vw - 53px)"}}>No radioactive waste is a by-product of nuclear fusion, bye-bye nuclear waste disposal!</span>
+              <span className="fusion-data-desc" style={{width: "calc(100vw - 250px)"}}>Nuclear fusion does not generate any kind of waste whatsoever.</span>
               <br/><br/>
               </span>
                 <span id="fusion-data-safety" className="fusion-data-stat">
